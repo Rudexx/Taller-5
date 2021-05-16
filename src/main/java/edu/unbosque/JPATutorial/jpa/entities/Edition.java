@@ -3,6 +3,7 @@ package edu.unbosque.JPATutorial.jpa.entities;
 import javax.persistence.*;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -24,9 +25,12 @@ public class Edition {
     @Column(name = "release_year")
     private Date releaseYear;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "book_id")
     private Book book;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "edition")
+    private List<Rent> rent;
 
     // FetchType.EAGER: When we retrieve a Library, we'll also automatically retrieve all of its corresponding Editions
     // CascadeType.PERSIST: When we save a superhero, its movies will also be saved

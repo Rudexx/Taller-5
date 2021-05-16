@@ -17,7 +17,7 @@ public class LibraryRepositoryImpl implements LibraryRepository {
 
     @Override
     public List<Library> findAll() {
-        return entityManager.createQuery("from Library").getResultList();
+        return entityManager.createQuery("from Library ").getResultList();
     }
 
     @Override
