@@ -48,12 +48,12 @@ public class BookService {
 
     }
 
-    public void deleteBook(int bookId){
+    public void deleteBook(int bookId, int authorId){
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("tutorial");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
-        bookRepository = new BookRepositoryImpl(entityManager);
-        bookRepository.deleteById(bookId);
+        authorRepository = new AuthorRepositoryImpl(entityManager);
+        authorRepository.deleteBook(authorId, bookId);
 
         entityManager.close();
         entityManagerFactory.close();
@@ -76,7 +76,8 @@ public class BookService {
                     book.getAuthor().getName(),
                     book.getTitle(), book.getIsbn(),
                     book.getGenre(),
-                    book.getEdition().size()));
+                    book.getEdition().size() ,
+                    book.getAuthor().getAuthorId()));
         }
 
         return booksPOJO;

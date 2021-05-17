@@ -25,7 +25,7 @@ public class Edition {
     @Column(name = "release_year")
     private java.util.Date releaseYear;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "book_id")
     private Book book;
 

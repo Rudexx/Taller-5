@@ -131,8 +131,10 @@
                     if (actions.includes('delete-book')) {
 
                         var cell = newRow.insertCell();
-                        var action = document.createElement('button');
-                        action.setAttribute('onclick', 'location.href="./delete-book?bookId=' + d['bookId'] + '";');
+                        var action = document.createElement('button'); //(\'' + jsonObject.id + '\',\'' + jsonObject.name + '\');
+                        action.setAttribute('onclick', 'location.href="./delete-book?info=' + d['bookId']+ " " +
+                            d['authorId'] + '";');
+
 
                         var text = document.createTextNode('Delete book');
 

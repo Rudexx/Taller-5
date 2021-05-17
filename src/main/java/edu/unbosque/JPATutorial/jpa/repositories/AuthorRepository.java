@@ -17,4 +17,6 @@ public interface AuthorRepository {
 
     Optional<Author> modifyById(Integer id, String name, String Country);
 
+    void deleteBook(Integer id, Integer bookId);
+
 }

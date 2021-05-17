@@ -10,14 +10,14 @@ import java.util.List;
         @NamedQuery(name = "Book.findByTitle",
                 query = "SELECT b FROM Book b WHERE b.title = :title"),
         @NamedQuery(name = "Book.findAll",
-                query = "SELECT b FROM Book b")
+                query = "SELECT b FROM Book b"),
 })
 public class Book {
 
     @Id
     @GeneratedValue
     @Column(name = "book_id")
-    private Integer bookId;
+    private int bookId;
 
     @Column(nullable = false, unique = true)
     private String title;
@@ -29,7 +29,7 @@ public class Book {
     @JoinColumn(name = "author_id")
     private Author author;
 
-    @OneToMany(mappedBy = "book" , fetch = FetchType.EAGER , cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "book" , fetch = FetchType.EAGER)
     private List<Edition> edition;
 
     @Column(name = "genre")

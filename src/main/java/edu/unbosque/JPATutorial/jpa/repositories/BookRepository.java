@@ -20,5 +20,5 @@ public interface BookRepository {
 
     Optional<Book> modifyById(Integer id, String title, String isbn ,String genre);
 
-    void deleteById(int bookId);
+    void deleteBookById(int bookId);
 }

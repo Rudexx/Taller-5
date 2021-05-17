@@ -17,12 +17,17 @@ public class DeleteBookServlet extends HttpServlet {
         response.setContentType("text/html");
 
 
-        int bookId = Integer.parseInt(request.getParameter("bookId"));
 
+        String info= request.getParameter("info");
 
+        String[] words=info.split(" ");
 
+        int bookId = Integer.parseInt(words[0]);
+        int authorId = Integer.parseInt((words[1]));
         BookService bookService = new BookService();
-        bookService.deleteBook(bookId);
+       bookService.deleteBook(bookId, authorId);
+
+
 
 
        response.sendRedirect("./index.jsp");
