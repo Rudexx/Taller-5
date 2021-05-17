@@ -7,13 +7,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-@WebServlet(name = "cretateBookServlet", value = "/create-book")
-public class CreateBookServlet extends HttpServlet {
+@WebServlet(name = "modifyBookServlet", value = "/modify-book")
+public class ModifyBookServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
@@ -22,19 +21,12 @@ public class CreateBookServlet extends HttpServlet {
         String title = request.getParameter("title");
         String isbn = request.getParameter("isbn");
         String genre = request.getParameter("genre");
-        String year = request.getParameter("year");
-        Date release_year = new Date();
-        try {
-            release_year = new SimpleDateFormat("dd/MM/yyyy").parse(year);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        String desc = request.getParameter("desc");
-        Integer authorId = Integer.parseInt(request.getParameter("authorId"));
+
+        Integer bookId = Integer.parseInt(request.getParameter("bookId"));
 
 
         BookService bookService = new BookService();
-        bookService.saveBook(title, isbn, authorId , genre, release_year , desc);
+        bookService.modifyBook(title, isbn, bookId , genre);
 
         response.sendRedirect("./index.jsp");
 

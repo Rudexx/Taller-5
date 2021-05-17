@@ -7,7 +7,7 @@
     <body>
 
         <form action="./create-library">
-            Library name: <input type="text" id="name" name="name">
+            Library name: <input type="text" id="name" name="name" required="true">
             <input type="submit" value="Create library!">
         </form>
 

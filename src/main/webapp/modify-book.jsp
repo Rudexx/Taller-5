@@ -6,8 +6,8 @@
 </head>
 <body>
 
-<form action="./create-book">
-    <input type="hidden" id="authorId" name="authorId" value ="<%= request.getParameter("authorId") %>">
+<form action="./modify-book">
+    <input type="hidden" id="bookId" name="bookId" value ="<%= request.getParameter("bookId") %>">
     Book title: <input type="text" id="title" name="title" required="true">
     <br />
     Book ISBN: <input type="text" id="isbn" name="isbn" required="true">
@@ -22,9 +22,8 @@
     <option value="Dystopian">Dystopian</option>
     <option value="Contemporary">Contemporary</option>
 </select>
-    Release Year: <input type="date" id="year" name="year" required="true">
-    Edition Description: <textarea id="desc" name="desc" style="resize: none" required="true"></textarea>
-    <input type="submit" value="Create book!">
+
+    <input type="submit" value="Modify book!">
 </form>
 
 </body>

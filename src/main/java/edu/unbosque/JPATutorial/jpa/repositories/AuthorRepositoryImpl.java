@@ -64,4 +64,24 @@ public class AuthorRepositoryImpl implements AuthorRepository {
         }
     }
 
+    @Override
+    public Optional<Author> modifyById(Integer id, String name, String country) {
+
+        try {
+            Author a = entityManager.find(Author.class, id);
+            entityManager.getTransaction().begin();
+            a.setName(name);
+            a.setCountry(country);
+            entityManager.getTransaction().commit();
+            return Optional.of(a);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return Optional.empty();
+
+
+
+    }
+
+
 }

@@ -8,8 +8,11 @@
 <body>
 
 <form action="./create-author">
-    Author name: <input type="text" id="name" name="name">
+    Author name: <input type="text" id="name" name="name" required="true">
+
+    Author Country: <input type="text" id="country" name="country" required="true">
     <input type="submit" value="Create author!">
+
 </form>
 
 </body>

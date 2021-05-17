@@ -1,6 +1,8 @@
 package edu.unbosque.JPATutorial.jpa.repositories;
 
+import edu.unbosque.JPATutorial.jpa.entities.Author;
 import edu.unbosque.JPATutorial.jpa.entities.Book;
+import edu.unbosque.JPATutorial.jpa.entities.Edition;
 
 import javax.persistence.EntityManager;
 import java.util.List;
@@ -47,6 +49,45 @@ public class BookRepositoryImpl implements BookRepository {
             e.printStackTrace();
         }
         return Optional.empty();
+    }
+
+    public Optional<Book> modifyById(Integer id, String title, String isbn ,String genre) {
+
+        try {
+            Book a = entityManager.find(Book.class, id);
+            entityManager.getTransaction().begin();
+            a.setTitle(title);
+            a.setIsbn(isbn);
+            a.setGenre(genre);
+            entityManager.getTransaction().commit();
+            return Optional.of(a);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return Optional.empty();
+
+
+
+    }
+
+    @Override
+    public void deleteById(int bookId) {
+        Book book = entityManager.find(Book.class, bookId);
+
+
+            try {
+                entityManager.getTransaction().begin();
+
+                for (int i = 0; i <book.getEdition().size() ; i++) {
+                    book.getEdition().remove(i);
+                }
+
+                entityManager.remove(book);
+                entityManager.getTransaction().commit();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
     }
 
 }

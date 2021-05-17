@@ -23,7 +23,7 @@ public class Edition {
     private String description;
 
     @Column(name = "release_year")
-    private Date releaseYear;
+    private java.util.Date releaseYear;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "book_id")
