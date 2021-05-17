@@ -58,4 +58,19 @@ public class LibraryService {
 
     }
 
+    public void deletelibrary(String name){
+        for(int i = 0; i < libraryRepository.findAll().size();i++) {
+            if(name.equals(libraryRepository.findAll().get(i).getName())) {
+                libraryRepository.findAll().remove(i);
+            }
+        }
+    }
+    public void changelibrary(String named, String namen){
+        for(int i = 0; i < libraryRepository.findAll().size();i++) {
+            if(named.equals(libraryRepository.findAll().get(i).getName())) {
+                libraryRepository.findAll().get(i).setName(namen);
+            }
+        }
+    }
+
 }
