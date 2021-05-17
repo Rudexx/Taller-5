@@ -31,6 +31,7 @@ public class AuthorService {
         entityManagerFactory.close();
 
         List<AuthorPOJO> authorsPOJO = new ArrayList<>();
+
         for (Author author : authors) {
             authorsPOJO.add(new AuthorPOJO(
                     author.getAuthorId(),
@@ -39,7 +40,19 @@ public class AuthorService {
                     author.getCountry()
             ));
         }
-
+        ArrayList IDs = new ArrayList<>();
+        for(int i = 0; i < listAuthors().size(); i++){
+            IDs.add(listAuthors().get(i).getAuthorId());
+        }
+        ArrayList<AuthorPOJO> ordenada = new ArrayList();
+        for(int i= 0; i< listAuthors().size(); i++){
+            for(int j = 0; j < listAuthors().size(); i++){
+            if(IDs.get(i).equals(listAuthors().get(j).getAuthorId())){
+                ordenada.add(listAuthors().get(j));
+            }
+            }
+        }
+        authorsPOJO = ordenada;
         return authorsPOJO;
 
     }
