@@ -11,6 +11,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 
@@ -31,18 +32,27 @@ public class AuthorService {
         entityManagerFactory.close();
 
         List<AuthorPOJO> authorsPOJO = new ArrayList<>();
+
+
         for (Author author : authors) {
+
             authorsPOJO.add(new AuthorPOJO(
                     author.getAuthorId(),
                     author.getName(),
                     author.getBooks().size(),
                     author.getCountry()
             ));
+
+
         }
 
         return authorsPOJO;
 
     }
+
+
+
+
 
     public Author saveAuthor(String name, String country) {
 

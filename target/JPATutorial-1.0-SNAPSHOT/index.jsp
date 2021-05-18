@@ -17,6 +17,8 @@
 
 <button onclick="location.href='./form-library.jsp';">Create library</button>
 <button onclick="location.href='./form-author.jsp';">Create author</button>
+<button onclick="location.href='./form-edition.jsp';">Create edition</button>
+
 
 <h3>Libraries</h3>
 
@@ -50,6 +52,7 @@
 </table>
 
 
+
 <h3>Authors</h3>
 
 <table id="authorsTbl">
@@ -65,6 +68,30 @@
     <tbody>
     </tbody>
 </table>
+
+<h3>Edition</h3>
+
+<table id="edition">
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Description</th>
+        <th>Release year</th>
+        <th>Book Id</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
 
 <script>
 
