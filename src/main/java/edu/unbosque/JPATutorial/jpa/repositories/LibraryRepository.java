@@ -15,6 +15,6 @@ public interface LibraryRepository {
 
     void deleteLibrary(int id);
 
-    void modifyLibrary(int id);
+    void modifyLibrary(int id, String name);
 
 }

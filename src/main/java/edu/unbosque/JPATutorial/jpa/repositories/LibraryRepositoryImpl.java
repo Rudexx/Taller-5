@@ -52,8 +52,17 @@ public class LibraryRepositoryImpl implements LibraryRepository {
     }
 
     @Override
-    public void modifyLibrary(int id) {
+    public void modifyLibrary(int id, String name) {
+        try {
 
+            Library library= entityManager.find(Library.class, id);
+
+            entityManager.getTransaction().begin();
+            library.setName(name);
+            entityManager.getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }

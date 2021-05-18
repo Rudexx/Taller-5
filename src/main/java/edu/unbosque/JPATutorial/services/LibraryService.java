@@ -75,12 +75,19 @@ public class LibraryService {
 
 
     }
-    public void changelibrary(String named, String name){
-        for(int i = 0; i < libraryRepository.findAll().size();i++) {
-            if(named.equals(libraryRepository.findAll().get(i).getName())) {
-                libraryRepository.findAll().get(i).setName(name);
-            }
-        }
+    public void changelibrary(String name, int id){
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("tutorial");
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+
+        libraryRepository = new LibraryRepositoryImpl(entityManager);
+
+
+        libraryRepository.modifyLibrary(id , name);
+
+        entityManager.close();
+        entityManagerFactory.close();
+
+        return;
     }
 
 }

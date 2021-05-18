@@ -42,15 +42,15 @@ public class AuthorService {
             ));
         }
         ArrayList<Integer> IDs = new ArrayList<Integer>();
-        for(int i = 0; i < listAuthors().size(); i++){
-            IDs.add(listAuthors().get(i).getAuthorId());
+        for(int i = 0; i < authorsPOJO.size(); i++){
+            IDs.add(authorsPOJO.get(i).getAuthorId());
         }
         List<AuthorPOJO> ordenada = new ArrayList<>();
         Collections.sort(IDs);
-        for(int i= 0; i< listAuthors().size(); i++){
-            for(int j = 0; j < listAuthors().size(); j++){
-            if(IDs.get(i).equals(listAuthors().get(j).getAuthorId())){
-                ordenada.add(listAuthors().get(j));
+        for(int i= 0; i< authorsPOJO.size(); i++){
+            for(int j = 0; j < authorsPOJO.size(); j++){
+            if(IDs.get(i).equals(authorsPOJO.get(j).getAuthorId())){
+                ordenada.add(authorsPOJO.get(j));
             }
             }
         }

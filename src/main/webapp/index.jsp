@@ -160,7 +160,7 @@
 
                         var cell = newRow.insertCell();
                         var action = document.createElement('button');
-                        action.setAttribute('onclick', 'location.href="./modify-library?libraryId=' + d['libraryId']+ '";');
+                        action.setAttribute('onclick', 'location.href="./modify-library.jsp?libraryId=' + d['libraryId']+ '";');
 
 
                         var text = document.createTextNode('Modify Library');
