@@ -13,4 +13,8 @@ public interface LibraryRepository {
 
     Optional<Library> save(Library library);
 
+    void deleteLibrary(int id);
+
+    void modifyLibrary(int id);
+
 }

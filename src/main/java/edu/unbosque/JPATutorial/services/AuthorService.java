@@ -11,6 +11,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 
@@ -40,13 +41,14 @@ public class AuthorService {
                     author.getCountry()
             ));
         }
-        ArrayList IDs = new ArrayList<>();
+        ArrayList<Integer> IDs = new ArrayList<Integer>();
         for(int i = 0; i < listAuthors().size(); i++){
             IDs.add(listAuthors().get(i).getAuthorId());
         }
-        ArrayList<AuthorPOJO> ordenada = new ArrayList();
+        List<AuthorPOJO> ordenada = new ArrayList<>();
+        Collections.sort(IDs);
         for(int i= 0; i< listAuthors().size(); i++){
-            for(int j = 0; j < listAuthors().size(); i++){
+            for(int j = 0; j < listAuthors().size(); j++){
             if(IDs.get(i).equals(listAuthors().get(j).getAuthorId())){
                 ordenada.add(listAuthors().get(j));
             }

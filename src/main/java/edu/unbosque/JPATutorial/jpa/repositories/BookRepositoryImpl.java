@@ -51,7 +51,7 @@ public class BookRepositoryImpl implements BookRepository {
         return Optional.empty();
     }
 
-    public Optional<Book> modifyById(Integer id, String title, String isbn ,String genre) {
+    public Optional<Book> modifyById(Integer id, String title, String isbn, String genre) {
 
         try {
             Book a = entityManager.find(Book.class, id);
@@ -66,27 +66,6 @@ public class BookRepositoryImpl implements BookRepository {
         }
         return Optional.empty();
 
-
-
-    }
-
-    @Override
-    public void deleteBookById(int bookId) {
-            try {
-
-                Book book = entityManager.find(Book.class, bookId);
-
-                entityManager.getTransaction().begin();
-
-                for (int i = 0; i <book.getEdition().size() ; i++) {
-                   Edition edition = entityManager.find(Edition.class, book.getEdition().get(i).getEditionId());
-                   entityManager.remove(edition);
-                }
-                entityManager.remove(book);
-                entityManager.getTransaction().commit();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
 
     }
 

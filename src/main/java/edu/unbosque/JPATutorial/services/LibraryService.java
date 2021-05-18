@@ -58,17 +58,27 @@ public class LibraryService {
 
     }
 
-    public void deletelibrary(String name){
-        for(int i = 0; i < libraryRepository.findAll().size();i++) {
-            if(name.equals(libraryRepository.findAll().get(i).getName())) {
-                libraryRepository.findAll().remove(i);
-            }
-        }
+    public void deletelibrary(int id){
+
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("tutorial");
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+
+        libraryRepository = new LibraryRepositoryImpl(entityManager);
+
+
+        libraryRepository.deleteLibrary(id);
+
+        entityManager.close();
+        entityManagerFactory.close();
+
+        return;
+
+
     }
-    public void changelibrary(String named, String namen){
+    public void changelibrary(String named, String name){
         for(int i = 0; i < libraryRepository.findAll().size();i++) {
             if(named.equals(libraryRepository.findAll().get(i).getName())) {
-                libraryRepository.findAll().get(i).setName(namen);
+                libraryRepository.findAll().get(i).setName(name);
             }
         }
     }

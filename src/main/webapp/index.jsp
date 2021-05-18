@@ -25,6 +25,7 @@
     <tr>
         <th>Id</th>
         <th>Name</th>
+        <th>Actions</th>
     </tr>
     </thead>
     <tbody>
@@ -131,12 +132,38 @@
                     if (actions.includes('delete-book')) {
 
                         var cell = newRow.insertCell();
-                        var action = document.createElement('button'); //(\'' + jsonObject.id + '\',\'' + jsonObject.name + '\');
+                        var action = document.createElement('button');
                         action.setAttribute('onclick', 'location.href="./delete-book?info=' + d['bookId']+ " " +
                             d['authorId'] + '";');
 
 
                         var text = document.createTextNode('Delete book');
+
+                        action.appendChild(text);
+                        cell.appendChild(action);
+
+                    }
+                    if (actions.includes('delete-library')) {
+
+                        var cell = newRow.insertCell();
+                        var action = document.createElement('button');
+                        action.setAttribute('onclick', 'location.href="./delete-library?libraryId=' + d['libraryId']+ '";');
+
+
+                        var text = document.createTextNode('Delete library');
+
+                        action.appendChild(text);
+                        cell.appendChild(action);
+
+                    }
+                    if (actions.includes('modify-library')) {
+
+                        var cell = newRow.insertCell();
+                        var action = document.createElement('button');
+                        action.setAttribute('onclick', 'location.href="./modify-library?libraryId=' + d['libraryId']+ '";');
+
+
+                        var text = document.createTextNode('Modify Library');
 
                         action.appendChild(text);
                         cell.appendChild(action);
@@ -153,7 +180,8 @@
     }
 
     // Printing libraries
-    printTable(elementId = 'librariesTbl', servlet = 'list-libraries', columns = ['libraryId', 'name']);
+    printTable(elementId = 'librariesTbl', servlet = 'list-libraries', columns = ['libraryId', 'name'] ,
+        actions = ['delete-library' ,'modify-library' ]);
 
 
 
