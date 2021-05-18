@@ -69,4 +69,12 @@ public class BookRepositoryImpl implements BookRepository {
 
     }
 
+    @Override
+    public List<Edition> findEditions() {
+
+        
+
+        return null;
+    }
+
 }

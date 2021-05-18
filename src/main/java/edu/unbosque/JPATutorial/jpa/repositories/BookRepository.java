@@ -20,5 +20,7 @@ public interface BookRepository {
 
     Optional<Book> modifyById(Integer id, String title, String isbn ,String genre);
 
+    List<Edition> findEditions();
+
 
 }
