@@ -1,9 +1,11 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>JSP Tutorial</title>
+    <link rel="stylesheet" href="css/css.css">
 
     <style>
         table, th, td {
@@ -20,9 +22,15 @@
 
 <h3>Libraries</h3>
 
-<table id="librariesTbl">
+
+<table id="librariesTbl"  >
+
+
+
+
     <thead>
     <tr>
+
         <th>Id</th>
         <th>Name</th>
         <th># Associated Editions</th>
@@ -40,7 +48,7 @@
 
 <h3>Authors</h3>
 
-<table id="authorsTbl">
+<table id="authorsTbl" >
     <thead>
     <tr>
         <th>Id</th>
@@ -56,7 +64,7 @@
 
 
 <h3>Books</h3>
-<table id="books">
+<table id="books" >
     <thead>
     <tr>
         <th>Book Id</th>
@@ -74,7 +82,7 @@
 
 
 <h3>Editions</h3>
-<table id="editions">
+<table id="editions" >
     <thead>
     <tr>
         <th>Id</th>
@@ -90,7 +98,7 @@
 
 
 <h3>Associate a library and an edition</h3>
-<form action="./associate-library">
+<form action="./associate-library" >
     Editions:<select id="edi" name="edi">
 </select>
 Libraries: <select id="libs", name="libs">
