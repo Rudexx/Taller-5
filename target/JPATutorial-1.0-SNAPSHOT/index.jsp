@@ -79,6 +79,7 @@
         <th>Id</th>
         <th>Description</th>
         <th>Book Name</th>
+        <th>Release Date</th>
         <th>Actions</th>
     </tr>
     </thead>
@@ -204,7 +205,7 @@
 
                         var cell = newRow.insertCell();
                         var action = document.createElement('button');
-                        //action.setAttribute('onclick', 'location.href="./modify-library.jsp?libraryId=' + d['libraryId']+ '";');
+                        action.setAttribute('onclick', 'location.href="./modify-edition.jsp?editionId=' + d['editionId']+ '";');
 
 
                         var text = document.createTextNode('Modify Edition');
@@ -216,7 +217,8 @@
 
                         var cell = newRow.insertCell();
                         var action = document.createElement('button');
-                        //action.setAttribute('onclick', 'location.href="./modify-library.jsp?libraryId=' + d['libraryId']+ '";');
+                        action.setAttribute('onclick', 'location.href="./delete-edition?info=' + d['editionId']+ " " +
+                            d['bookId'] + '";');
 
 
                         var text = document.createTextNode('Delete Edition');
@@ -247,7 +249,7 @@
         'editionNumber' ] , actions = ['modify-book', 'delete-book' , 'add-edition']);
     // Printing editions
     printTable(elementId = 'editions', servlet = 'list-editions', columns = ['editionId', 'description',
-        'bookName'] , actions = ['modify-edition', 'delete-edition']);
+        'bookName',  'date'] , actions = ['modify-edition', 'delete-edition']);
 
 </script>
 

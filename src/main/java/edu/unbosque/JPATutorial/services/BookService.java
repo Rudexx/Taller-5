@@ -100,4 +100,9 @@ public class BookService {
         entityManager.close();
         entityManagerFactory.close();
     }
+    public void deleteEdition(int editionId , int bookId){
+
+
+
+    }
 }

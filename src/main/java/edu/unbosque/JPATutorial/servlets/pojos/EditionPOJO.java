@@ -8,12 +8,18 @@ public class EditionPOJO {
 
     private String bookName;
 
+    private int bookId;
+
+    private String date;
+
     public EditionPOJO() { }
 
-    public EditionPOJO(Integer editionId, String description, String bookName) {
+    public EditionPOJO(Integer editionId, String description, String bookName, int bookId, String date) {
         this.editionId = editionId;
         this.description = description;
         this.bookName = bookName;
+        this.bookId = bookId;
+        this.date = date;
     }
 
     public Integer getEditionId() {

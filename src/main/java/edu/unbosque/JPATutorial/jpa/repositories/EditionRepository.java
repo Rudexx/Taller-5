@@ -1,5 +1,6 @@
 package edu.unbosque.JPATutorial.jpa.repositories;
 
+import edu.unbosque.JPATutorial.jpa.entities.Book;
 import edu.unbosque.JPATutorial.jpa.entities.Edition;
 import edu.unbosque.JPATutorial.jpa.entities.Library;
 
@@ -12,8 +13,8 @@ public interface EditionRepository {
 
     Optional<Edition> save(Edition edition);
 
-    void deleteLibrary(int id);
 
-    void modifyLibrary(int id, String name);
+    Optional<Edition> modifyEdition(String desc, java.util.Date date, int editionId);
+
 
 }

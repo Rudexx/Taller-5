@@ -27,13 +27,21 @@ public class EditionRepositoryImpl implements EditionRepository {
         return Optional.empty();
     }
 
-    @Override
-    public void deleteLibrary(int id) {
-
-    }
 
     @Override
-    public void modifyLibrary(int id, String name) {
+    public Optional<Edition> modifyEdition(String desc, java.util.Date date, int editionId) {
+
+        try {
+            Edition a = entityManager.find(Edition.class, editionId);
+            entityManager.getTransaction().begin();
+            a.setDescription(desc);
+            a.setReleaseYear(date);
+            entityManager.getTransaction().commit();
+            return Optional.of(a);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return Optional.empty();
 
     }
 }

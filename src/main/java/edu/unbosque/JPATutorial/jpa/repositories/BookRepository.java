@@ -22,5 +22,7 @@ public interface BookRepository {
 
     List<Edition> findEditions();
 
+    public void deleteEdition(int editionId, int bookId);
+
 
 }

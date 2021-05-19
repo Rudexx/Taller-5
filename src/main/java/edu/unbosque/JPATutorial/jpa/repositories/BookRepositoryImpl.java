@@ -72,9 +72,39 @@ public class BookRepositoryImpl implements BookRepository {
     @Override
     public List<Edition> findEditions() {
 
-        
 
         return null;
     }
 
+    @Override
+    public void deleteEdition(int editionId, int bookId) {
+
+
+        Book book = entityManager.find(Book.class, bookId);
+        if (book != null) {
+            try {
+
+                entityManager.getTransaction().begin();
+
+                Edition b = null;
+
+                for (int i = 0; i < book.getEdition().size(); i++) {
+                    if (book.getEdition().get(i).getEditionId() == editionId) {
+                        book.getEdition().remove(i);
+                        System.out.println("holaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+                    }
+                }
+
+                entityManager.remove(entityManager.find(Edition.class, editionId));
+                entityManager.getTransaction().commit();
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+
+        }
+
+
+    }
 }

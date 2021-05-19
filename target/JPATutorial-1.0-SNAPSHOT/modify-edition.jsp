@@ -6,12 +6,12 @@
 </head>
 <body>
 
-<form action="./create-edition">
-    <input type="hidden" id="bookId" name="bookId" value ="<%= request.getParameter("bookId") %>">
+<form action="./modify-edition">
+    <input type="hidden" id="editionId" name="editionId" value ="<%= request.getParameter("editionId") %>">
 
-    Release Year: <input type="date" id="year" name="year" required="true">
+    Release Date: <input type="date" id="year" name="year" required="true">
     Edition Description: <textarea id="desc" name="desc" style="resize: none" required="true"></textarea>
-    <input type="submit" value="Create Edition!">
+    <input type="submit" value="Modify Edition!">
 </form>
 
 </body>

@@ -20,7 +20,7 @@ public class EditionService {
 
 
     BookRepository bookRepository;
-    private Object EditionRepository;
+    private EditionRepository EditionRepository;
 
     public void saveEdition(int bookId, java.util.Date year , String desc) {
 
@@ -46,12 +46,12 @@ public class EditionService {
 
     }
 
-    public void deleteEdition(int bookId, int authorId){
+    public void deleteEdition(int editionId, int bookId){
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("tutorial");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
-//        authorRepository = new AuthorRepositoryImpl(entityManager);
-//        authorRepository.deleteBook(authorId, bookId);
+        bookRepository = new BookRepositoryImpl(entityManager);
+        bookRepository.deleteEdition(editionId, bookId);
 
         entityManager.close();
         entityManagerFactory.close();
@@ -72,19 +72,21 @@ public class EditionService {
         for (Edition edition : editions) {
             editionsPOJO.add( new EditionPOJO( edition.getEditionId()
             , edition.getDescription()
-            , edition.getBook().getTitle()));
+            , edition.getBook().getTitle(),
+                    edition.getBook().getBookId(),
+                    edition.getReleaseYear().toString()));
         }
 
         return editionsPOJO;
 
     }
 
-    public void modifyEdition(String title, String isbn, Integer bookId, String genre) {
+    public void modifyEdition(String desc, java.util.Date date, int editionId) {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("tutorial");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
-        bookRepository = new BookRepositoryImpl(entityManager);
-        bookRepository.modifyById(bookId,title, isbn,genre);
+        EditionRepository = new EditionRepositoryImpl(entityManager);
+        EditionRepository.modifyEdition(desc, date, editionId);
 
         entityManager.close();
         entityManagerFactory.close();
