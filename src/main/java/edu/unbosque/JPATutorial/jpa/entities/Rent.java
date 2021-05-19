@@ -33,6 +33,35 @@ public class Rent {
 
     }
 
+    public Integer getRentId() {
+        return rentId;
+    }
 
+    public void setRentId(Integer rentId) {
+        this.rentId = rentId;
+    }
 
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    public Edition getEdition() {
+        return edition;
+    }
+
+    public void setEdition(Edition edition) {
+        this.edition = edition;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
 }

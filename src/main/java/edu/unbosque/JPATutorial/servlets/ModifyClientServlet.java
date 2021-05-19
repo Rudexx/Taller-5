@@ -10,22 +10,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "modifyClientServlet", value = "/modify-client")
+@WebServlet(name = "modifyClientServlet", value = "/modify-customer")
 public class ModifyClientServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         response.setContentType("text/html");
-
-        String email = request.getParameter("email");
-        String first_name = request.getParameter("first_name");
-        String last_name = request.getParameter("last_name");
+        String oldEmail = request.getParameter("oldEmail");
+        String first_name = request.getParameter("firstN");
+        String last_name = request.getParameter("lastN");
         String gender = request.getParameter("gender");
         int age = Integer.parseInt(request.getParameter("age"));
 
         ClientService clientService= new ClientService();
-        clientService.modifyLibrary(email,first_name,last_name,gender,age);
+        clientService.modifyCustomer(first_name,last_name,gender,age, oldEmail);
 
         response.sendRedirect("./index.jsp");
     }

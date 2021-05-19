@@ -13,5 +13,5 @@ public interface ClientRepositoy {
 
     void deleteCustomer(String email);
 
-    void modifyLibrary(String email, String last_name,String first_name, String gender, int age);
+    void modifyCustomer( String last_name,String first_name, String gender, int age, String oldEmail);
 }

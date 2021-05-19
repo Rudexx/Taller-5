@@ -17,6 +17,7 @@
 
 <button onclick="location.href='./form-library.jsp';">Create library</button>
 <button onclick="location.href='./form-author.jsp';">Create author</button>
+<button onclick="location.href='./form-customer.jsp';">Create Customer</button>
 
 <h3>Libraries</h3>
 
@@ -81,6 +82,37 @@
         <th>Description</th>
         <th>Book Name</th>
         <th>Release Date</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+
+<h3>Customers</h3>
+<table id="customers">
+    <thead>
+    <tr>
+        <th>Email</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Gender</th>
+        <th>Age</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+
+<h3>Rents</h3>
+<table id="rents">
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Email</th>
+        <th>Edition Id</th>
+        <th>Renting Date</th>
         <th>Actions</th>
     </tr>
     </thead>
@@ -235,10 +267,22 @@ Libraries: <select id="libs", name="libs">
                         action.appendChild(text);
                         cell.appendChild(action);
 
-                    }if (actions.includes('delete-edition')) {
+                    }if (actions.includes('delete-customer')) {
 
                         var cell = newRow.insertCell();
                         var action = document.createElement('button');
+                        action.setAttribute('onclick', 'location.href="./delete-customer?email=' + d['Email']+ '";');
+
+
+                        var text = document.createTextNode('Delete Customer');
+
+                        action.appendChild(text);
+                        cell.appendChild(action);
+                        }if (actions.includes('delete-edition')) {
+
+                        var cell = newRow.insertCell();
+                        var action = document.createElement('button');
+
                         action.setAttribute('onclick', 'location.href="./delete-edition?info=' + d['editionId']+ " " +
                             d['bookId'] + '";');
 
@@ -247,7 +291,31 @@ Libraries: <select id="libs", name="libs">
 
                         action.appendChild(text);
                         cell.appendChild(action);
-                        }
+                    }if (actions.includes('modify-Customer')) {
+
+                        var cell = newRow.insertCell();
+                        var action = document.createElement('button');
+                         action.setAttribute('onclick', 'location.href="./modify-customer.jsp?email='
+                             + d['Email']+ '";');
+
+
+                        var text = document.createTextNode('Modify Customer');
+
+                        action.appendChild(text);
+                        cell.appendChild(action);
+                    }if (actions.includes('rent-book')) {
+
+                        var cell = newRow.insertCell();
+                        var action = document.createElement('button');
+                        // action.setAttribute('onclick', 'location.href="./delete-edition?info=' + d['editionId']+ " " +
+                        //     d['bookId'] + '";');
+
+
+                        var text = document.createTextNode('Rent a Book');
+
+                        action.appendChild(text);
+                        cell.appendChild(action);
+                    }
 
 
                 });
@@ -274,6 +342,9 @@ Libraries: <select id="libs", name="libs">
     // Printing editions
     printTable(elementId = 'editions', servlet = 'list-editions', columns = ['editionId', 'description',
         'bookName',  'date'] , actions = ['modify-edition', 'delete-edition']);
+
+    printTable(elementId = 'customers', servlet = 'list-customer', columns = ['Email', 'last_name' , 'first_name' ,
+            'gender', 'edad'] ,actions = ['delete-customer' ,'modify-Customer' , 'rent-book']);
 
     function createLists(elementId, servlet, columns) {
 

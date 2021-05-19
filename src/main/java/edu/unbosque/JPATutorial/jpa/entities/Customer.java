@@ -1,6 +1,7 @@
 package edu.unbosque.JPATutorial.jpa.entities;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -32,7 +33,13 @@ public class Customer {
 
     public Customer() { }
 
-    public Customer(Integer libraryId, String name) {
+    public Customer(String email, String last_name,String first_name, String gender, int age) {
+        this.age = age;
+        this.email = email;
+        this.lastName = last_name;
+        this.firstName = first_name;
+        this.gender = gender;
+        rentList = new ArrayList<Rent>();
 
     }
 
@@ -74,5 +81,26 @@ public class Customer {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public List<Rent> getRentList() {
+        return rentList;
+    }
+
+    public void addRent(Rent rent) {
+        rent.setCustomer(this);
+        this.rentList.add(rent);
+    }
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "rentList=" + rentList +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", age=" + age +
+                ", gender='" + gender + '\'' +
+                ", email='" + email + '\'' +
+                '}';
     }
 }

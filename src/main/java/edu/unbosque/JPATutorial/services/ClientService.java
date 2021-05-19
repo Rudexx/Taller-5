@@ -61,26 +61,22 @@ public class ClientService {
 
     }
 
-    public Customer Crearcliente (String email, String first_name,String last_name, String gender, int age){
+    public void Crearcliente (String email, String first_name,String last_name, String gender, int age){
 
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("tutorial");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
         clientRepositoy = new ClientRepositorylmpl(entityManager);
 
-        Customer cliente = new Customer();
-        cliente.setAge(age);
-        cliente.setEmail(email);
-        cliente.setFirstName(first_name);
-        cliente.setLastName(last_name);
-        cliente.setGender(gender);
+        Customer cliente = new Customer(email,first_name,last_name,gender,age);
 
-        Customer persistedCustomer = clientRepositoy.save(cliente).get();
+
+        clientRepositoy.save(cliente);
 
         entityManager.close();
         entityManagerFactory.close();
 
-        return persistedCustomer;
+        return;
 
     }
 
@@ -99,13 +95,13 @@ public class ClientService {
 
     }
 
-    public void modifyLibrary(String email, String last_name,String first_name, String gender, int age){
+    public void modifyCustomer( String last_name,String first_name, String gender, int age, String oldEmail){
 
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("tutorial");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
         clientRepositoy = new ClientRepositorylmpl(entityManager);
-        clientRepositoy.modifyLibrary( email, last_name,first_name, gender, age);
+        clientRepositoy.modifyCustomer( last_name,first_name, gender, age, oldEmail);
 
         entityManager.close();
         entityManagerFactory.close();
