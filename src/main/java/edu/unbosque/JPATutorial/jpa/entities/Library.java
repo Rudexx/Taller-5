@@ -60,4 +60,9 @@ public class Library {
         return editions;
     }
 
+    public void addEdition(Edition e){
+        e.getLibraries().add(this);
+        editions.add(e);
+    }
+
 }

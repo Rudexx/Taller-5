@@ -25,6 +25,7 @@
     <tr>
         <th>Id</th>
         <th>Name</th>
+        <th># Associated Editions</th>
         <th>Actions</th>
     </tr>
     </thead>
@@ -88,15 +89,27 @@
 </table>
 
 
-<h3>Associate or Disassociate a library and an edition</h3>
-
-<select id="edi">
+<h3>Associate a library and an edition</h3>
+<form action="./associate-library">
+    Editions:<select id="edi" name="edi">
 </select>
-
-<select id="libs">
+Libraries: <select id="libs", name="libs">
 </select>
+<button type="submit">Associate these two entities!</button>
+</form>
+
+<h3>Dissasociate a library and an edition</h3>
+<form action="./dis-library">
+    Editions:<select id="edi2" name="edi2">
+</select>
+    Libraries: <select id="libs2", name="libs2">
+</select>
+    <button type="submit">Disassociate these two entities!</button>
+</form>
+
 
 <script>
+
 
     function printTable(elementId, servlet, columns, actions = []) {
 
@@ -249,8 +262,8 @@
 
 
     // Printing libraries
-    printTable(elementId = 'librariesTbl', servlet = 'list-libraries', columns = ['libraryId', 'name'] ,
-        actions = ['delete-library' ,'modify-library' , 'as-edition', 'dis-edition']);
+    printTable(elementId = 'librariesTbl', servlet = 'list-libraries', columns = ['libraryId', 'name' , 'editionNumber'] ,
+        actions = ['delete-library' ,'modify-library']);
     // Printing authors
     printTable(elementId = 'authorsTbl', servlet = 'list-authors', columns = ['authorId', 'name', 'numBooks' , 'country'],
         actions = ['create-book', 'delete-author' , 'modify-author']);
@@ -270,13 +283,17 @@
                 var data = JSON.parse(xhr2.responseText);
 
                 var select = document.getElementById(elementId);
-
+                var agregados = 0;
                 data.map(d => {
 
                     var opt = document.createElement('option');
                     columns.map(c => {
                         opt.appendChild( document.createTextNode(d[c] + "     "));
-                        opt.value = d[c];
+
+                            opt.value =  opt.value + d[c] +" " ;
+
+
+
                         select.appendChild(opt);
                     });
 
@@ -293,6 +310,10 @@
     }
     createLists(elementId = 'libs', servlet = 'list-libraries' , columns = ['libraryId', 'name']);
     createLists(elementId = 'edi', servlet = 'list-editions', columns = ['editionId', 'description',
+        'bookName',  'date']);
+
+    createLists(elementId = 'libs2', servlet = 'list-libraries' , columns = ['libraryId', 'name']);
+    createLists(elementId = 'edi2', servlet = 'list-editions', columns = ['editionId', 'description',
         'bookName',  'date']);
 
 </script>

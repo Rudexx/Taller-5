@@ -87,8 +87,9 @@ public class Edition {
     }
 
     public void addLibrary(Library library) {
-        libraries.add(library);
         library.getEditions().add(this);
+        libraries.add(library);
+
     }
 
     @Override

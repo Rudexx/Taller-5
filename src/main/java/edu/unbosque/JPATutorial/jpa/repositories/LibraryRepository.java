@@ -17,4 +17,8 @@ public interface LibraryRepository {
 
     void modifyLibrary(int id, String name);
 
+    void associateEdition(int editionId, int libraryId);
+
+
+
 }

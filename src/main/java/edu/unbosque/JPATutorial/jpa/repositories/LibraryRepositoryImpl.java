@@ -65,4 +65,29 @@ public class LibraryRepositoryImpl implements LibraryRepository {
         }
     }
 
+    @Override
+    public void associateEdition(int editionId, int libraryId) {
+
+        try {
+
+            Library library= entityManager.find(Library.class, libraryId);
+            Edition edition = entityManager.find(Edition.class, editionId);
+            entityManager.getTransaction().begin();
+
+            library.addEdition(edition);
+            edition.addLibrary(library);
+
+
+            entityManager.getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+
+
+    }
+
+
+
 }

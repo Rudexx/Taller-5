@@ -6,11 +6,15 @@ public class LibraryPOJO {
 
     private String name;
 
+    private int editionNumber;
+
+
     public LibraryPOJO() { }
 
-    public LibraryPOJO(Integer libraryId, String name) {
+    public LibraryPOJO(Integer libraryId, String name, int editionNumber) {
         this.libraryId = libraryId;
         this.name = name;
+        this.editionNumber = editionNumber;
     }
 
     public Integer getLibraryId() {
