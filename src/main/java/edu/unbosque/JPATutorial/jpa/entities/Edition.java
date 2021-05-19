@@ -91,6 +91,12 @@ public class Edition {
         libraries.add(library);
 
     }
+    public void deleteLibrary(Library library) {
+        library.getEditions().remove(this);
+        libraries.remove(library);
+
+    }
+
 
     @Override
     public String toString() {

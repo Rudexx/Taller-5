@@ -289,11 +289,7 @@ Libraries: <select id="libs", name="libs">
                     var opt = document.createElement('option');
                     columns.map(c => {
                         opt.appendChild( document.createTextNode(d[c] + "     "));
-
-                            opt.value =  opt.value + d[c] +" " ;
-
-
-
+                        opt.value =  opt.value + d[c] +" " ;
                         select.appendChild(opt);
                     });
 

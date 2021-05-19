@@ -65,4 +65,9 @@ public class Library {
         editions.add(e);
     }
 
+    public void deleteEdition(Edition e){
+        e.getLibraries().remove(e);
+        editions.remove(e);
+    }
+
 }

@@ -19,6 +19,8 @@ public interface LibraryRepository {
 
     void associateEdition(int editionId, int libraryId);
 
+    void DisassociateEdition(int editionId, int libraryId);
+
 
 
 }

@@ -124,7 +124,7 @@ public class LibraryService {
         libraryRepository = new LibraryRepositoryImpl(entityManager);
 
 
-        libraryRepository.associateEdition(editionId,libraryId);
+        libraryRepository.DisassociateEdition(editionId, libraryId);
 
         entityManager.close();
         entityManagerFactory.close();

@@ -88,6 +88,28 @@ public class LibraryRepositoryImpl implements LibraryRepository {
 
     }
 
+    @Override
+    public void DisassociateEdition(int editionId, int libraryId) {
+
+
+        try {
+
+            Library library= entityManager.find(Library.class, libraryId);
+            Edition edition = entityManager.find(Edition.class, editionId);
+            entityManager.getTransaction().begin();
+
+            library.deleteEdition(edition);
+            edition.deleteLibrary(library);
+
+
+            entityManager.getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+
+    }
 
 
 }
