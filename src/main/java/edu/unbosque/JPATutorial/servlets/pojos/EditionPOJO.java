@@ -2,31 +2,41 @@ package edu.unbosque.JPATutorial.servlets.pojos;
 
 public class EditionPOJO {
 
-    private Integer libraryId;
+    private Integer editionId;
 
-    private String name;
+    private String description;
+
+    private String bookName;
 
     public EditionPOJO() { }
 
-    public EditionPOJO(Integer libraryId, String name) {
-        this.libraryId = libraryId;
-        this.name = name;
+    public EditionPOJO(Integer editionId, String description, String bookName) {
+        this.editionId = editionId;
+        this.description = description;
+        this.bookName = bookName;
     }
 
-    public Integer getLibraryId() {
-        return libraryId;
+    public Integer getEditionId() {
+        return editionId;
     }
 
-    public void setLibraryId(Integer libraryId) {
-        this.libraryId = libraryId;
+    public void setEditionId(Integer editionId) {
+        this.editionId = editionId;
     }
 
-    public String getName() {
-        return name;
+    public String getDescription() {
+        return description;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
+    public String getBookName() {
+        return bookName;
+    }
+
+    public void setBookName(String bookName) {
+        this.bookName = bookName;
+    }
 }

@@ -3,11 +3,9 @@ package edu.unbosque.JPATutorial.services;
 import edu.unbosque.JPATutorial.jpa.entities.Author;
 import edu.unbosque.JPATutorial.jpa.entities.Book;
 import edu.unbosque.JPATutorial.jpa.entities.Edition;
-import edu.unbosque.JPATutorial.jpa.repositories.AuthorRepository;
-import edu.unbosque.JPATutorial.jpa.repositories.AuthorRepositoryImpl;
-import edu.unbosque.JPATutorial.jpa.repositories.BookRepository;
-import edu.unbosque.JPATutorial.jpa.repositories.BookRepositoryImpl;
+import edu.unbosque.JPATutorial.jpa.repositories.*;
 import edu.unbosque.JPATutorial.servlets.pojos.BookPOJO;
+import edu.unbosque.JPATutorial.servlets.pojos.EditionPOJO;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -20,22 +18,23 @@ import java.util.Optional;
 @Stateless
 public class EditionService {
 
-    AuthorRepository authorRepository;
-    BookRepository bookRepository;
 
-    public void saveEdition(String title, String isbn, Integer authorId, String genre, java.util.Date year , String desc) {
+    BookRepository bookRepository;
+    private Object EditionRepository;
+
+    public void saveEdition(int bookId, java.util.Date year , String desc) {
 
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("tutorial");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
-        authorRepository = new AuthorRepositoryImpl(entityManager);
+        EditionRepository = new EditionRepositoryImpl(entityManager);
         bookRepository = new BookRepositoryImpl(entityManager);
 
-        Optional<Author> author = authorRepository.findById(authorId);
-        author.ifPresent(a -> {
-            Book b = new Book(title, isbn, genre, new Edition(desc , year));
-            a.addBook(b);
-            authorRepository.save(a);
+        Optional<Book> book = bookRepository.findById(bookId);
+        book.ifPresent(a -> {
+            Edition e = new Edition(desc,year);
+            a.addEdition(e);
+            bookRepository.save(e);
         });
 
 
@@ -51,35 +50,32 @@ public class EditionService {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("tutorial");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
-        authorRepository = new AuthorRepositoryImpl(entityManager);
-        authorRepository.deleteBook(authorId, bookId);
+//        authorRepository = new AuthorRepositoryImpl(entityManager);
+//        authorRepository.deleteBook(authorId, bookId);
 
         entityManager.close();
         entityManagerFactory.close();
     }
 
-    public List<BookPOJO> listEditions() {
+    public List<EditionPOJO> listEditions() {
 
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("tutorial");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
-        bookRepository = new BookRepositoryImpl(entityManager);
-        List<Book> books = bookRepository.findAll();
+        EditionRepository e = new EditionRepositoryImpl(entityManager);
+        List<Edition> editions = e.findAll();
 
         entityManager.close();
         entityManagerFactory.close();
 
-        List<BookPOJO> booksPOJO = new ArrayList<>();
-        for (Book book : books) {
-            booksPOJO.add( new BookPOJO( book.getBookId(),
-                    book.getAuthor().getName(),
-                    book.getTitle(), book.getIsbn(),
-                    book.getGenre(),
-                    book.getEdition().size() ,
-                    book.getAuthor().getAuthorId()));
+        List<EditionPOJO> editionsPOJO = new ArrayList<>();
+        for (Edition edition : editions) {
+            editionsPOJO.add( new EditionPOJO( edition.getEditionId()
+            , edition.getDescription()
+            , edition.getBook().getTitle()));
         }
 
-        return booksPOJO;
+        return editionsPOJO;
 
     }
 

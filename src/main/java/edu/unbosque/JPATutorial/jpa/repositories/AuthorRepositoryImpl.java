@@ -56,6 +56,8 @@ public class AuthorRepositoryImpl implements AuthorRepository {
                     entityManager.remove(book);
                 });
 
+
+
                 entityManager.remove(author);
                 entityManager.getTransaction().commit();
 

@@ -16,7 +16,7 @@ public interface BookRepository {
 
     List<Book> findAll();
 
-    Optional<Book> save(Book book);
+    Optional<Edition> save(Edition edition);
 
     Optional<Book> modifyById(Integer id, String title, String isbn ,String genre);
 

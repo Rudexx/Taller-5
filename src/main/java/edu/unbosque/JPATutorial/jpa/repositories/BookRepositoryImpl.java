@@ -39,12 +39,12 @@ public class BookRepositoryImpl implements BookRepository {
         return entityManager.createQuery("from Book").getResultList();
     }
 
-    public Optional<Book> save(Book book) {
+    public Optional<Edition> save(Edition edition) {
         try {
             entityManager.getTransaction().begin();
-            entityManager.persist(book);
+            entityManager.persist(edition);
             entityManager.getTransaction().commit();
-            return Optional.of(book);
+            return Optional.of(edition);
         } catch (Exception e) {
             e.printStackTrace();
         }

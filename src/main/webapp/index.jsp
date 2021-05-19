@@ -32,8 +32,29 @@
     </tbody>
 </table>
 
-<h3>Books</h3>
 
+
+
+
+
+<h3>Authors</h3>
+
+<table id="authorsTbl">
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th># Books</th>
+        <th>Country</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+
+
+<h3>Books</h3>
 <table id="books">
     <thead>
     <tr>
@@ -51,15 +72,13 @@
 </table>
 
 
-<h3>Authors</h3>
-
-<table id="authorsTbl">
+<h3>Editions</h3>
+<table id="editions">
     <thead>
     <tr>
         <th>Id</th>
-        <th>Name</th>
-        <th># Books</th>
-        <th>Country</th>
+        <th>Description</th>
+        <th>Book Name</th>
         <th>Actions</th>
     </tr>
     </thead>
@@ -168,6 +187,43 @@
                         action.appendChild(text);
                         cell.appendChild(action);
 
+                    }if (actions.includes('add-edition')) {
+
+                        var cell = newRow.insertCell();
+                        var action = document.createElement('button');
+                        action.setAttribute('onclick', 'location.href="./form-edition.jsp?bookId='
+                            + d['bookId']+ '";');
+
+
+                        var text = document.createTextNode('Add Edition');
+
+                        action.appendChild(text);
+                        cell.appendChild(action);
+
+                    }if (actions.includes('modify-edition')) {
+
+                        var cell = newRow.insertCell();
+                        var action = document.createElement('button');
+                        //action.setAttribute('onclick', 'location.href="./modify-library.jsp?libraryId=' + d['libraryId']+ '";');
+
+
+                        var text = document.createTextNode('Modify Edition');
+
+                        action.appendChild(text);
+                        cell.appendChild(action);
+
+                    }if (actions.includes('delete-edition')) {
+
+                        var cell = newRow.insertCell();
+                        var action = document.createElement('button');
+                        //action.setAttribute('onclick', 'location.href="./modify-library.jsp?libraryId=' + d['libraryId']+ '";');
+
+
+                        var text = document.createTextNode('Delete Edition');
+
+                        action.appendChild(text);
+                        cell.appendChild(action);
+
                     }
 
                 });
@@ -182,16 +238,16 @@
     // Printing libraries
     printTable(elementId = 'librariesTbl', servlet = 'list-libraries', columns = ['libraryId', 'name'] ,
         actions = ['delete-library' ,'modify-library' ]);
-
-
-
     // Printing authors
     printTable(elementId = 'authorsTbl', servlet = 'list-authors', columns = ['authorId', 'name', 'numBooks' , 'country'],
         actions = ['create-book', 'delete-author' , 'modify-author']);
-
+    // Printing books
     printTable(elementId = 'books', servlet = 'list-books', columns = ['bookId', 'authorName',
         'title', 'isbnNumber' ,'genre',
-        'editionNumber' ] , actions = ['modify-book', 'delete-book']);
+        'editionNumber' ] , actions = ['modify-book', 'delete-book' , 'add-edition']);
+    // Printing editions
+    printTable(elementId = 'editions', servlet = 'list-editions', columns = ['editionId', 'description',
+        'bookName'] , actions = ['modify-edition', 'delete-edition']);
 
 </script>
 

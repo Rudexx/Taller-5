@@ -91,4 +91,15 @@ public class Edition {
         library.getEditions().add(this);
     }
 
+    @Override
+    public String toString() {
+        return "Edition{" +
+                "editionId=" + editionId +
+                ", description='" + description + '\'' +
+                ", releaseYear=" + releaseYear +
+                ", book=" + book +
+                ", rent=" + rent +
+                ", libraries=" + libraries +
+                '}';
+    }
 }

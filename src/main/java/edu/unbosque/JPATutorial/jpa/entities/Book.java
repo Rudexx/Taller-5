@@ -29,7 +29,7 @@ public class Book {
     @JoinColumn(name = "author_id")
     private Author author;
 
-    @OneToMany(mappedBy = "book" , fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "book" , fetch = FetchType.EAGER , cascade = CascadeType.ALL)
     private List<Edition> edition;
 
     @Column(name = "genre")
