@@ -87,6 +87,15 @@
     </tbody>
 </table>
 
+
+<h3>Associate or Disassociate a library and an edition</h3>
+
+<select id="edi">
+</select>
+
+<select id="libs">
+</select>
+
 <script>
 
     function printTable(elementId, servlet, columns, actions = []) {
@@ -225,8 +234,8 @@
 
                         action.appendChild(text);
                         cell.appendChild(action);
+                        }
 
-                    }
 
                 });
 
@@ -237,9 +246,11 @@
 
     }
 
+
+
     // Printing libraries
     printTable(elementId = 'librariesTbl', servlet = 'list-libraries', columns = ['libraryId', 'name'] ,
-        actions = ['delete-library' ,'modify-library' ]);
+        actions = ['delete-library' ,'modify-library' , 'as-edition', 'dis-edition']);
     // Printing authors
     printTable(elementId = 'authorsTbl', servlet = 'list-authors', columns = ['authorId', 'name', 'numBooks' , 'country'],
         actions = ['create-book', 'delete-author' , 'modify-author']);
@@ -250,6 +261,39 @@
     // Printing editions
     printTable(elementId = 'editions', servlet = 'list-editions', columns = ['editionId', 'description',
         'bookName',  'date'] , actions = ['modify-edition', 'delete-edition']);
+
+    function createLists(elementId, servlet, columns) {
+
+        var xhr2 = new XMLHttpRequest();
+        xhr2.onreadystatechange = function() {
+            if (xhr2.readyState == 4) {
+                var data = JSON.parse(xhr2.responseText);
+
+                var select = document.getElementById(elementId);
+
+                data.map(d => {
+
+                    var opt = document.createElement('option');
+                    columns.map(c => {
+                        opt.appendChild( document.createTextNode(d[c] + "     "));
+                        opt.value = d[c];
+                        select.appendChild(opt);
+                    });
+
+
+
+                });
+
+
+            }
+        }
+        xhr2.open('GET', '${pageContext.request.contextPath}/' + servlet, true);
+        xhr2.send(null);
+
+    }
+    createLists(elementId = 'libs', servlet = 'list-libraries' , columns = ['libraryId', 'name']);
+    createLists(elementId = 'edi', servlet = 'list-editions', columns = ['editionId', 'description',
+        'bookName',  'date']);
 
 </script>
 
