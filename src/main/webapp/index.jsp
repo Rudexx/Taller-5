@@ -109,11 +109,13 @@
 <table id="rents">
     <thead>
     <tr>
-        <th>Id</th>
+
         <th>Email</th>
         <th>Edition Id</th>
+        <th>Customer Name</th>
         <th>Renting Date</th>
-        <th>Actions</th>
+        <th>Id</th>
+
     </tr>
     </thead>
     <tbody>
@@ -307,8 +309,7 @@ Libraries: <select id="libs", name="libs">
 
                         var cell = newRow.insertCell();
                         var action = document.createElement('button');
-                        // action.setAttribute('onclick', 'location.href="./delete-edition?info=' + d['editionId']+ " " +
-                        //     d['bookId'] + '";');
+                         action.setAttribute('onclick', 'location.href="./rent-form.jsp?email=' + d['Email']+'";');
 
 
                         var text = document.createTextNode('Rent a Book');
@@ -346,6 +347,11 @@ Libraries: <select id="libs", name="libs">
     printTable(elementId = 'customers', servlet = 'list-customer', columns = ['Email', 'last_name' , 'first_name' ,
             'gender', 'edad'] ,actions = ['delete-customer' ,'modify-Customer' , 'rent-book']);
 
+    printTable(elementId = 'rents', servlet = 'list-rents', columns = ['email' , 'editionId' ,
+    'customerName' , 'rentingDate' , 'rentId']);
+
+
+
     function createLists(elementId, servlet, columns) {
 
         var xhr2 = new XMLHttpRequest();
@@ -354,7 +360,6 @@ Libraries: <select id="libs", name="libs">
                 var data = JSON.parse(xhr2.responseText);
 
                 var select = document.getElementById(elementId);
-                var agregados = 0;
                 data.map(d => {
 
                     var opt = document.createElement('option');

@@ -11,7 +11,7 @@ import java.util.Set;
 public class Customer {
 
 
-    @OneToMany(mappedBy = "customer", fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "customer", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Rent> rentList;
 
     @Column(name = "first_name")

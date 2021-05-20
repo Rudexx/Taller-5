@@ -3,6 +3,7 @@ package edu.unbosque.JPATutorial.jpa.entities;
 import edu.unbosque.JPATutorial.jpa.entities.Edition;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -16,20 +17,23 @@ public class Rent {
     @Column(name = "rent_id")
     private Integer rentId;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "email")
     private Customer customer;
 
     @JoinColumn(name = "edition_id")
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL , fetch = FetchType.EAGER)
     private Edition edition;
 
     @Column(name = "renting_date")
-    private String date;
+    private java.util.Date date;
 
     public Rent() { }
 
-    public Rent(Integer libraryId, String name) {
+    public Rent(Customer c, Edition e, java.util.Date date) {
+        this.customer = c;
+        this.edition = e;
+        this.date = date;
 
     }
 
@@ -57,11 +61,27 @@ public class Rent {
         this.edition = edition;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
+
+    public void removeCustomer(){
+
+
+        for (int i = 0; i <this.customer.getRentList().size() ; i++) {
+            this.customer.getRentList().remove(i);
+        }
+
+        for (int i = 0; i <this.edition.getRent().size() ; i++) {
+            this.edition.getRent().remove(i);
+        }
+
+        this.customer = null;
+        this.edition = null;
+    }
+
 }

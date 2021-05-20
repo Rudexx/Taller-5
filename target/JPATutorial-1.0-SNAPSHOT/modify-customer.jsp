@@ -18,7 +18,6 @@
     <input type="hidden" id="oldEmail" name="oldEmail" value ="<%= request.getParameter("email") %>">
     First Name: <input type="text" id="firstN" name="firstN" required="true">
     Last Name: <input type="text" id="lastN" name="lastN" required="true">
-    Email: <input type="email" id="email" name="email" required="true">
     Gender: <select id="gender" name="gender">
     <option value="Male">Male</option>
     <option value="Female">Female</option>

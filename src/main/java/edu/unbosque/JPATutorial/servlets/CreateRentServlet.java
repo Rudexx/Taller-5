@@ -1,7 +1,7 @@
 package edu.unbosque.JPATutorial.servlets;
 
 import edu.unbosque.JPATutorial.services.BookService;
-import edu.unbosque.JPATutorial.services.LibraryService;
+import edu.unbosque.JPATutorial.services.RentService;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,28 +12,27 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-@WebServlet(name = "AssociateEditionServlet", value = "/associate-library")
-public class AssociateEditionServlet extends HttpServlet {
+@WebServlet(name = "createRentServlet", value = "/create-rent")
+public class CreateRentServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
         response.setContentType("text/html");
 
-        String edition = request.getParameter("edi");
-        String library = request.getParameter("libs");
+        String email = request.getParameter("email");
+        String edition = request.getParameter("editions");
 
         String[] editionInfo = edition.split(" ");
-        String[] libraryInfo = library.split( " ");
-
-
         String edi = editionInfo[0].substring(0, editionInfo[0].length()/2);
-        String lib = libraryInfo[0].substring(0, libraryInfo[0].length()/2);
+
 
         int editionId = Integer.parseInt(edi);
-        int libraryId = Integer.parseInt(lib);
 
-        LibraryService l = new LibraryService();
-        l.assosiateEdition(editionId, libraryId);
+        RentService r = new RentService();
+        r.saveRent(email, editionId);
+
+
+
 
         response.sendRedirect("./index.jsp");
 

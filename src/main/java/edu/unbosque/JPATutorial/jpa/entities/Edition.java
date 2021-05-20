@@ -29,7 +29,7 @@ public class Edition {
     @JoinColumn(name = "book_id")
     private Book book;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "edition")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "edition", fetch = FetchType.EAGER, orphanRemoval = true)
     private List<Rent> rent;
 
     // FetchType.EAGER: When we retrieve a Library, we'll also automatically retrieve all of its corresponding Editions
@@ -109,4 +109,10 @@ public class Edition {
                 ", libraries=" + libraries +
                 '}';
     }
+
+    public List<Rent> getRent() {
+        return rent;
+    }
+
+
 }

@@ -1,9 +1,6 @@
 package edu.unbosque.JPATutorial.jpa.repositories;
 
-import edu.unbosque.JPATutorial.jpa.entities.Author;
-import edu.unbosque.JPATutorial.jpa.entities.Book;
-import edu.unbosque.JPATutorial.jpa.entities.Customer;
-import edu.unbosque.JPATutorial.jpa.entities.Rent;
+import edu.unbosque.JPATutorial.jpa.entities.*;
 
 import javax.persistence.EntityManager;
 import java.util.List;
@@ -64,19 +61,25 @@ public class ClientRepositorylmpl implements ClientRepositoy {
 
         if (c != null) {
             try {
-
                 entityManager.getTransaction().begin();
-
                 Rent r = null;
-
                 for (int i = 0; i < c.getRentList().size(); i++) {
+
+                    r = entityManager.find(Rent.class,c.getRentList().get(i));
+                    Edition e = entityManager.find(Edition.class, r.getEdition().getEditionId());
+
+                    for (int j = 0; j < e.getRent().size() ; j++) {
+                        if(e.getRent().get(j).getRentId() == r.getRentId()){
+                            e.getRent().remove(j);
+                            j = e.getRent().size();
+                        }
+                    }
+
+
 
                     c.getRentList().remove(i);
                     entityManager.remove(c.getRentList().get(i));
                 }
-
-
-
                 entityManager.remove(c);
                 entityManager.getTransaction().commit();
 
