@@ -16,7 +16,7 @@
 <button onclick="location.href='./form-library.jsp';">Create library</button>
 <button onclick="location.href='./form-author.jsp';">Create author</button>
 <button onclick="location.href='./form-customer.jsp';">Create Customer</button>
-<button onclick="location.href='./compareDates-form.jsp';">List Rents by Date</button>
+
 
 <h3>Libraries</h3>
 
