@@ -5,11 +5,9 @@
     <meta charset="UTF-8">
     <title>JSP Tutorial</title>
 
-    <style>
-        table, th, td {
-            border: 1px solid black;
-        }
-    </style>
+
+
+    <link rel="stylesheet" href="css/css.css">
 </head>
 <body>
 
@@ -18,6 +16,7 @@
 <button onclick="location.href='./form-library.jsp';">Create library</button>
 <button onclick="location.href='./form-author.jsp';">Create author</button>
 <button onclick="location.href='./form-customer.jsp';">Create Customer</button>
+<button onclick="location.href='./compareDates-form.jsp';">List Rents by Date</button>
 
 <h3>Libraries</h3>
 
@@ -316,6 +315,18 @@ Libraries: <select id="libs", name="libs">
 
                         action.appendChild(text);
                         cell.appendChild(action);
+                    }if (actions.includes('compare-dates')) {
+
+                        var cell = newRow.insertCell();
+                        var action = document.createElement('button');
+                        action.setAttribute('onclick',
+                            'location.href="./compareDates-form.jsp?email=' + d['Email']+'";');
+
+
+                        var text = document.createTextNode('Compare By Dates');
+
+                        action.appendChild(text);
+                        cell.appendChild(action);
                     }
 
 
@@ -345,7 +356,7 @@ Libraries: <select id="libs", name="libs">
         'bookName',  'date'] , actions = ['modify-edition', 'delete-edition']);
 
     printTable(elementId = 'customers', servlet = 'list-customer', columns = ['Email', 'last_name' , 'first_name' ,
-            'gender', 'edad'] ,actions = ['delete-customer' ,'modify-Customer' , 'rent-book']);
+            'gender', 'edad'] ,actions = ['delete-customer' ,'modify-Customer' , 'rent-book' , 'compare-dates']);
 
     printTable(elementId = 'rents', servlet = 'list-rents', columns = ['email' , 'editionId' ,
     'customerName' , 'rentingDate' , 'rentId']);
