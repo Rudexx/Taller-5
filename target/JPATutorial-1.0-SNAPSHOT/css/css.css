@@ -45,6 +45,20 @@ input{
     border: 3px double black;
 
 }
+textarea{
+    text-decoration: none;
+    padding: 3px;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-family: helvetica;
+    font-weight: 300;
+    font-size: 25px;
+    font-style: italic;
+    color: black;
+    background-color: beige;
+    border-radius: 15px;
+    border: 3px double black;
+}
 
 select{
     text-decoration: none;

@@ -18,7 +18,7 @@
     <input type="hidden" id="email" name="email" value ="<%= request.getParameter("email") %>">
     ¿Which Edition would you want to Rent?: <select id="editions" name="editions"></select>
 
-    <input type="submit" value="Modify Customer!">
+    <input type="submit" value="Rent this Edition!">
 
 </form>
 <script>
